@@ -1,0 +1,43 @@
+
+0 安装 
+各个操作系统安装docker
+Linux/unix系列：Ubuntu 安装 mac安装
+windows 安装
+
+
+1 使用
+docker images  查看镜像（记得+s）
+
+docker stats 命令可以查看容器的内存
+
+
+2 踩坑 docker helloworld镜像 ：
+下载速度太慢，报错：
+"unable to hello-wolrd :latest "
+需要阿里云
+cd /etc/daemon
+touch  /etc/docker/daemon.json
+ 
+sudo vim /etc/docker/daemon.json
+{
+"registry-mirrors":["https://hub-mirror.c.163.com","https://registry.aliyuncs.com","https://registry.docker-cn.com","https://docker.mirrors.ustc.edu.cn"]
+}
+
+重启docker： systemctl     restart    docker
+查看状态docker：  systemctl     status   docker
+
+docker run hello-world 就可以跑通。
+
+
+3 docker 下载：
+拉取镜像： 
+docker pull ubuntu/mysql/redis 
+第一步：查看版本 
+docker search  +mysql 
+第二部：获取新的
+docker pull mysql :latest #获取最近的镜像！
+
+第二部：有时候会报错：
+" Error response from daemon: manifest for securityneo/neokylin:latest not found"
+点击Tags
+可以精确获取最近的版本。
